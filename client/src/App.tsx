@@ -246,6 +246,30 @@ const testimonials = [
     quote: 'The team turned our messy internal process into a clean automation system. We saved hours every week almost immediately.',
     company: 'Northline Labs',
   },
+  {
+    name: 'Priya Desai',
+    role: 'CTO',
+    quote: 'Their AI agents transformed our customer support. Response times dropped dramatically and our team can focus on what matters.',
+    company: 'TechVibe',
+  },
+  {
+    name: 'Vikram Joshi',
+    role: 'Product Lead',
+    quote: 'The analytics dashboard they built gives us real-time visibility into our KPIs. Decision-making is now data-driven and fast.',
+    company: 'GrowthNest',
+  },
+  {
+    name: 'Neha Kapoor',
+    role: 'Founder',
+    quote: 'From concept to launch, ZeroThree delivered a scalable SaaS platform that exceeded our expectations in every way.',
+    company: 'CloudSync',
+  },
+  {
+    name: 'Arjun Rao',
+    role: 'Head of Engineering',
+    quote: 'Their cloud infrastructure setup was seamless. We scaled 10x without any downtime issues. Truly professional delivery.',
+    company: 'DataPulse',
+  },
 ];
 
 const textLoop = ['AI automation', 'data intelligence', 'modern web apps', 'cloud systems'];
@@ -549,16 +573,18 @@ function App() {
             <span>Testimonials</span>
             <h2>Trusted by founders and business leaders.</h2>
           </div>
-          <div className="testimonial-grid">
-            {testimonials.map(testimonial => (
-              <article key={testimonial.name} className="testimonial-card">
-                <p>"{testimonial.quote}"</p>
-                <div className="testimonial-meta">
-                  <strong>{testimonial.name}</strong>
-                  <span>{testimonial.role}, {testimonial.company}</span>
-                </div>
-              </article>
-            ))}
+          <div className="testimonial-marquee">
+            <div className="testimonial-track">
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <article key={`${testimonial.name}-${index}`} className="testimonial-card">
+                  <p>"{testimonial.quote}"</p>
+                  <div className="testimonial-meta">
+                    <strong>{testimonial.name}</strong>
+                    <span>{testimonial.role}, {testimonial.company}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
