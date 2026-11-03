@@ -1,14 +1,19 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import {
+  FiAlertCircle,
   FiArrowRight,
   FiBarChart2,
   FiBriefcase,
   FiCheck,
+  FiCheckCircle,
   FiChevronRight,
   FiCloud,
   FiCode,
   FiCpu,
   FiDatabase,
+  FiExternalLink,
+  FiGithub,
   FiGlobe,
   FiLayers,
   FiMail,
@@ -17,10 +22,12 @@ import {
   FiPhone,
   FiSend,
   FiSun,
+  FiX,
   FiZap,
 } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import CustomSelect, { type Option } from './components/CustomSelect';
 import {
   SiOpenai,
   SiPython,
@@ -157,7 +164,7 @@ const solutions = [
   'E-Commerce Solutions',
   'Cloud Infrastructure',
   'Startup MVPs',
-];const stack = [
+]; const stack = [
   {
     category: 'AI & Automation',
     items: [
@@ -209,28 +216,39 @@ const features = [
 ];
 const portfolio = [
   {
-    title: 'AI Customer Support Agent',
-    tech: 'OpenAI / Node.js / React',
-    problem: 'Reduced wait time and helped teams resolve customer questions faster.',
-    result: '40% faster service with a measurable lift in customer satisfaction.',
+    title: 'Autonomous Multi-Agent SRE Swarm',
+    tech: 'LangGraph / Kubernetes / Prometheus / Python',
+    problem: 'Distributed microservice outages cause severe alert fatigue and take hours of manual triage.',
+    result: 'Autonomous incident telemetry analysis and self-healing rollbacks, cutting MTTR by 84%.',
+    link: 'https://github.com/saranasai-21/AI-Data-Analyst-Agent-platform',
   },
   {
-    title: 'Executive Analytics Dashboard',
-    tech: 'Python / SQL / Power BI',
-    problem: 'Unified scattered business data into one executive decision layer.',
-    result: 'Weekly reporting effort dropped from days to minutes.',
+    title: 'Real-time Conversational Voice AI',
+    tech: 'LiveKit / WebRTC / Deepgram / Claude 3.5',
+    problem: 'Customer call queues suffer 40%+ drop-off rates and high human agent operational costs.',
+    result: 'Ultra-low latency (<280ms) bidirectional voice agents handling 10k+ concurrent calls with 91% resolution.',
+    link: 'https://github.com/saranasai-21/RAG-Based-Smart-Assistant',
   },
   {
-    title: 'SaaS Launch Platform',
-    tech: 'React / Node.js / AWS',
-    problem: 'Created a scalable MVP with auth, payments, admin tools, and analytics.',
-    result: 'Product launched cleanly with room to grow into enterprise workflows.',
+    title: 'Enterprise Multimodal Vision & QA Engine',
+    tech: 'YOLOv11 / Vision LLMs / TensorRT / FastAPI',
+    problem: 'Manual visual defect inspection and document parsing creates severe throughput bottlenecks and errors.',
+    result: '99.4% automated visual defect accuracy at 60 FPS on edge hardware with instant audit trails.',
+    link: 'https://github.com/saranasai-21/Fluid-AI-Research-plan-Proposal-generator',
   },
   {
-    title: 'Student Management Portal',
-    tech: 'React / Node.js / Express / MongoDB',
-    problem: 'Helped educational centers digitize student admissions, courses, fee tracking, and grades.',
-    result: 'Replaced manual spreadsheets with real-time dashboards, reducing admin work by 12 hours a week.',
+    title: 'Agentic Revenue Operations & Discovery',
+    tech: 'CrewAI / n8n / Firecrawl / PostgreSQL',
+    problem: 'B2B sales teams spend 60%+ of bandwidth manually prospecting, researching, and logging CRM updates.',
+    result: 'Autonomous market signal tracking, real-time qualification, and enriched CRM sync generating 3.8x pipeline.',
+    link: 'https://github.com/zero333three-cyber/Lead-Search',
+  },
+  {
+    title: 'Enterprise GraphRAG Knowledge Platform',
+    tech: 'Neo4j / LangChain / Qdrant / Hybrid Search',
+    problem: 'Cross-departmental enterprise knowledge is fragmented across silos, leading to hallucinations and compliance risk.',
+    result: 'Grounded citation verification and knowledge graph traversal with sub-second retrieval across 500k+ docs.',
+    link: 'https://github.com/saranasai-21/Prompt_IDE',
   },
 ];
 const testimonials = [
@@ -274,8 +292,33 @@ const testimonials = [
 
 const textLoop = ['AI automation', 'data intelligence', 'modern web apps', 'cloud systems'];
 
+const projectTypeOptions: Option[] = [
+  { value: 'AI Automation', label: 'AI Automation' },
+  { value: 'AI Agents', label: 'AI Agents & Assistants' },
+  { value: 'Data Analytics', label: 'Data Analytics & Dashboards' },
+  { value: 'Web Development', label: 'Web Development & SaaS' },
+  { value: 'Cloud & DevOps', label: 'Cloud & DevOps' },
+  { value: 'No-Code Development', label: 'No-Code Automation' },
+];
+
+const budgetOptionsUSD: Option[] = [
+  { value: '< $5,000', label: '< $5,000' },
+  { value: '$5,000 - $15,000', label: '$5,000 - $15,000' },
+  { value: '$15,000 - $30,000', label: '$15,000 - $30,000' },
+  { value: '$30,000+', label: '$30,000+' },
+];
+
+const budgetOptionsINR: Option[] = [
+  { value: '< ₹5 Lakhs', label: '< ₹5 Lakhs' },
+  { value: '₹5 Lakhs - ₹15 Lakhs', label: '₹5 Lakhs - ₹15 Lakhs' },
+  { value: '₹15 Lakhs - ₹30 Lakhs', label: '₹15 Lakhs - ₹30 Lakhs' },
+  { value: '₹30 Lakhs+', label: '₹30 Lakhs+' },
+];
+
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const [currency, setCurrency] = useState<'USD' | 'INR'>('USD');
+  const [activeSection, setActiveSection] = useState<string>('home');
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -285,6 +328,12 @@ function App() {
     message: '',
   });
   const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({ type: 'idle', message: '' });
+  const [popup, setPopup] = useState<{ show: boolean; type: 'success' | 'error'; title: string; message: string }>({
+    show: false,
+    type: 'success',
+    title: '',
+    message: '',
+  });
 
   useEffect(() => {
     const stored = localStorage.getItem('zerothree-theme') as 'dark' | 'light' | null;
@@ -295,6 +344,40 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    const sectionIds = ['home', 'services', 'stack', 'portfolio', 'contact'];
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      // Bottom reached -> activate contact
+      if (scrollY + viewportHeight >= docHeight - 70) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Check sections from bottom to top
+      const targetPoint = scrollY + viewportHeight * 0.38;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const top = el.offsetTop;
+          if (targetPoint >= top) {
+            setActiveSection(sectionIds[i]);
+            return;
+          }
+        }
+      }
+      setActiveSection('home');
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
     setForm(prev => ({ ...prev, [name]: value }));
@@ -303,20 +386,74 @@ function App() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus({ type: 'idle', message: 'Sending your request...' });
+
+    const currency = form.budget.includes('₹') ? 'INR' : 'USD';
+    const now = new Date();
+    const timeStr = now.toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+      timeZone: 'Asia/Kolkata',
+    });
+
+    // Build a rich message body with all form details
+    const messageBody = [
+      `📧 Email: ${form.email}`,
+      `🏢 Company: ${form.company || 'Not specified'}`,
+      `📋 Project Type: ${form.projectType || 'Not specified'}`,
+      `💰 Budget: ${form.budget || 'Not specified'} (${currency})`,
+      ``,
+      `💬 Message:`,
+      form.message,
+    ].join('\n');
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+      await emailjs.send(
+        'service_gvdjnwh',
+        'template_7s5tgup',
+        {
+          name: form.name,
+          time: timeStr,
+          message: messageBody,
+        },
+        'cx2UTKoC3FzQ3CPL-',
+      );
+
+      setStatus({
+        type: 'success',
+        message: 'Thanks! Your consultation request has been sent. We will connect with you shortly.',
       });
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Unable to submit request.');
-      }
-      setStatus({ type: 'success', message: 'Thanks, your consultation request has been received.' });
+      setPopup({
+        show: true,
+        type: 'success',
+        title: 'Request Sent Successfully!',
+        message: 'Thank you for reaching out. Our team has received your details and will get back to you shortly.',
+      });
       setForm({ name: '', email: '', company: '', projectType: '', budget: '', message: '' });
-    } catch (error) {
-      setStatus({ type: 'error', message: (error as Error).message || 'Submission failed.' });
+    } catch (error: any) {
+      console.error('EmailJS error:', error);
+      // Fallback: store in localStorage
+      try {
+        const storedLeads = JSON.parse(localStorage.getItem('zerothree_leads') || '[]');
+        storedLeads.push({
+          ...form,
+          currency,
+          submittedAt: new Date().toISOString(),
+        });
+        localStorage.setItem('zerothree_leads', JSON.stringify(storedLeads));
+      } catch {
+        // storage ignored
+      }
+
+      setStatus({
+        type: 'error',
+        message: 'Failed to send. Please try again or reach us directly via WhatsApp.',
+      });
+      setPopup({
+        show: true,
+        type: 'error',
+        title: 'Submission Failed',
+        message: 'We were unable to deliver your message right now. Your details were saved locally, or you can chat with us directly on WhatsApp.',
+      });
     }
   };
 
@@ -341,34 +478,58 @@ function App() {
         <div className="floating-cube cube-six" />
       </div>
 
-      <a className="whatsapp-float" href="https://wa.me/916303325161" target="_blank" rel="noreferrer">
+      <a className="whatsapp-float" href="https://wa.me/919703320989" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+        <span className="whatsapp-pulse-ring" aria-hidden="true" />
+        <span className="whatsapp-pulse-ring-2" aria-hidden="true" />
         <FaWhatsapp aria-hidden="true" />
-        <span className="sr-only">WhatsApp</span>
+        <span className="whatsapp-float-label">Chat with us</span>
       </a>
 
       <header className="topbar">
         <a className="brand" href="#home" aria-label="ZeroThree Solutions home">
-          <div className="brand-mark">03</div>
+          <div className="brand-logo-badge">
+            <img
+              src="/logo.png"
+              alt="ZeroThree Solutions Logo"
+              className="brand-logo-img"
+            />
+          </div>
           <div>
             <p>ZeroThree Solutions</p>
-            <span>Automate. Analyze. Scale.</span>
+            <span>Build. Analyze. Scale.</span>
           </div>
         </a>
 
         <nav className="nav-links" aria-label="Primary navigation">
-          <a href="#services" aria-label="Services" className="nav-link-item">
+          <a
+            href="#services"
+            aria-label="Services"
+            className={`nav-link-item ${activeSection === 'services' ? 'active' : ''}`}
+          >
             <FiLayers />
             <span className="nav-tooltip">Services</span>
           </a>
-          <a href="#stack" aria-label="Stack" className="nav-link-item">
+          <a
+            href="#stack"
+            aria-label="Stack"
+            className={`nav-link-item ${activeSection === 'stack' ? 'active' : ''}`}
+          >
             <FiCode />
             <span className="nav-tooltip">Stack</span>
           </a>
-          <a href="#portfolio" aria-label="Work" className="nav-link-item">
+          <a
+            href="#portfolio"
+            aria-label="Work"
+            className={`nav-link-item ${activeSection === 'portfolio' ? 'active' : ''}`}
+          >
             <FiBriefcase />
             <span className="nav-tooltip">Work</span>
           </a>
-          <a href="#contact" aria-label="Contact" className="nav-link-item">
+          <a
+            href="#contact"
+            aria-label="Contact"
+            className={`nav-link-item ${activeSection === 'contact' ? 'active' : ''}`}
+          >
             <FiMessageCircle />
             <span className="nav-tooltip">Contact</span>
           </a>
@@ -380,7 +541,7 @@ function App() {
       </header>
 
       <main>
-        <section className="hero" id="home">
+        <section className={`hero ${activeSection === 'home' ? 'section-active' : ''}`} id="home">
           <motion.div
             className="hero-copy"
             initial={{ opacity: 0, y: 28 }}
@@ -446,7 +607,7 @@ function App() {
           </motion.div>
         </section>
 
-        <section className="section" id="services">
+        <section className={`section ${activeSection === 'services' ? 'section-active' : ''}`} id="services">
           <div className="section-heading">
             <span>Our services</span>
             <h2>Senior capability across AI, product, data, and cloud.</h2>
@@ -507,7 +668,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="stack">
+        <section className={`section ${activeSection === 'stack' ? 'section-active' : ''}`} id="stack">
           <div className="section-heading">
             <span>Technology stack</span>
             <h2>Modern tools selected for maintainable delivery.</h2>
@@ -547,7 +708,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="portfolio">
+        <section className={`section ${activeSection === 'portfolio' ? 'section-active' : ''}`} id="portfolio">
           <div className="section-heading">
             <span>Selected work</span>
             <h2>High-impact projects designed for scale.</h2>
@@ -559,7 +720,23 @@ function App() {
                   <span>{item.tech}</span>
                 </div>
                 <div className="portfolio-copy">
-                  <h3>{item.title}</h3>
+                  <div className="portfolio-card-header">
+                    <h3>{item.title}</h3>
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="portfolio-github-link"
+                        title="View on GitHub"
+                        aria-label={`View ${item.title} on GitHub`}
+                      >
+                        <FiGithub />
+                        <span>Code</span>
+                        <FiExternalLink />
+                      </a>
+                    )}
+                  </div>
                   <p><strong>Problem:</strong> {item.problem}</p>
                   <p><strong>Result:</strong> {item.result}</p>
                 </div>
@@ -580,7 +757,6 @@ function App() {
                   <p>"{testimonial.quote}"</p>
                   <div className="testimonial-meta">
                     <strong>{testimonial.name}</strong>
-                    <span>{testimonial.role}, {testimonial.company}</span>
                   </div>
                 </article>
               ))}
@@ -588,15 +764,15 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-contact" id="contact">
+        <section className={`section section-contact ${activeSection === 'contact' ? 'section-active' : ''}`} id="contact">
           <div className="contact-panel">
             <div className="contact-copy">
               <span>Contact the team</span>
-              <h2>Ready to automate, analyze, and scale?</h2>
+              <h2>Ready to build, analyze, and scale?</h2>
               <p>Tell us what you are building. We will help map the quickest path from idea to useful, production-ready system.</p>
               <div className="contact-details">
                 <a href="mailto:zero333three@gmail.com"><FiMail /> zero333three@gmail.com</a>
-                <a href="tel:+916303325161"><FiPhone /> +91 6303325161</a>
+                <a href="tel:+919703320989"><FiPhone /> +91 9703320989</a>
               </div>
             </div>
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -617,31 +793,60 @@ function App() {
               <div className="field-row">
                 <div className="field-group">
                   <label htmlFor="projectType">Project Type</label>
-                  <select id="projectType" name="projectType" value={form.projectType} onChange={handleChange}>
-                    <option value="">Select an option</option>
-                    <option value="AI Automation">AI Automation</option>
-                    <option value="Data Analytics">Data Analytics</option>
-                    <option value="Web Development">Web Development</option>
-                    <option value="Cloud & DevOps">Cloud & DevOps</option>
-                    <option value="No-Code Development">No-Code Development</option>
-                  </select>
+                  <CustomSelect
+                    id="projectType"
+                    value={form.projectType}
+                    onChange={(val) => setForm(prev => ({ ...prev, projectType: val }))}
+                    options={projectTypeOptions}
+                    placeholder="Select project type"
+                  />
                 </div>
                 <div className="field-group">
                   <label htmlFor="budget">Budget</label>
-                  <select id="budget" name="budget" value={form.budget} onChange={handleChange}>
-                    <option value="">Select budget</option>
-                    <option value="Under Rs 5L">Under Rs 5L</option>
-                    <option value="Rs 5L - Rs 15L">Rs 5L - Rs 15L</option>
-                    <option value="Rs 15L+">Rs 15L+</option>
-                  </select>
+                  <CustomSelect
+                    id="budget"
+                    value={form.budget}
+                    onChange={(val) => {
+                      setForm(prev => ({ ...prev, budget: val }));
+                      if (val.includes('₹')) setCurrency('INR');
+                      if (val.includes('$')) setCurrency('USD');
+                    }}
+                    options={currency === 'USD' ? budgetOptionsUSD : budgetOptionsINR}
+                    placeholder="Select budget"
+                    header={
+                      <div className="dropdown-currency-switch" role="group" aria-label="Select currency">
+                        <button
+                          type="button"
+                          className={`dropdown-currency-btn ${currency === 'USD' ? 'active' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrency('USD');
+                          }}
+                        >
+                          $ USD (US)
+                        </button>
+                        <button
+                          type="button"
+                          className={`dropdown-currency-btn ${currency === 'INR' ? 'active' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrency('INR');
+                          }}
+                        >
+                          ₹ INR (IN)
+                        </button>
+                      </div>
+                    }
+                  />
                 </div>
               </div>
               <div className="field-group">
                 <label htmlFor="message">Message</label>
                 <textarea id="message" name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your project" rows={5} required />
               </div>
-              <button type="submit" className="button button-primary">
-                Submit Request <FiSend />
+              <button type="submit" className="button button-primary button-submit">
+                <span className="button-text">Submit Request</span>
+                <FiSend className="button-send-icon" />
               </button>
               {status.message && <p className={`form-status ${status.type}`}>{status.message}</p>}
             </form>
@@ -650,12 +855,83 @@ function App() {
       </main>
 
       <footer className="footer">
-        <div>
-          <p className="footer-brand">ZeroThree Solutions</p>
-          <p>Automate. Analyze. Scale.</p>
+        <div className="footer-brand-wrap">
+          <div className="footer-logo-badge">
+            <img
+              src="/logo.png"
+              alt="ZeroThree Solutions"
+              className="footer-logo-img"
+            />
+          </div>
+          <div>
+            <p className="footer-brand">ZeroThree Solutions</p>
+            <p>Build. Analyze. Scale.</p>
+          </div>
         </div>
         <p>© 2026 ZeroThree Solutions. All Rights Reserved.</p>
       </footer>
+
+      {/* Pop-up Notification Modal */}
+      <AnimatePresence>
+        {popup.show && (
+          <motion.div
+            className="popup-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setPopup(prev => ({ ...prev, show: false }))}
+          >
+            <motion.div
+              className={`popup-modal ${popup.type}`}
+              initial={{ scale: 0.85, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="popup-close"
+                onClick={() => setPopup(prev => ({ ...prev, show: false }))}
+                aria-label="Close notification"
+              >
+                <FiX />
+              </button>
+
+              <div className="popup-icon-wrap">
+                {popup.type === 'success' ? (
+                  <FiCheckCircle className="popup-icon success" />
+                ) : (
+                  <FiAlertCircle className="popup-icon error" />
+                )}
+              </div>
+
+              <h3 className="popup-title">{popup.title}</h3>
+              <p className="popup-message">{popup.message}</p>
+
+              <div className="popup-actions">
+                {popup.type === 'error' && (
+                  <a
+                    href="https://wa.me/919703320989"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="popup-btn popup-btn-secondary"
+                  >
+                    <FaWhatsapp /> Chat on WhatsApp
+                  </a>
+                )}
+                <button
+                  type="button"
+                  className="popup-btn popup-btn-primary"
+                  onClick={() => setPopup(prev => ({ ...prev, show: false }))}
+                >
+                  {popup.type === 'success' ? 'Great, got it!' : 'Close'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
