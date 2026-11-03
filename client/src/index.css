@@ -1223,41 +1223,58 @@ main {
 }
 
 .portfolio-image {
-  min-height: 8rem;
+  height: 9.5rem;
   position: relative;
   display: flex;
   align-items: flex-start;
   padding: 0.75rem;
-  background:
-    linear-gradient(135deg, rgba(50, 211, 153, 0.22), transparent 50%),
-    linear-gradient(315deg, rgba(79, 157, 255, 0.2), transparent 48%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 22px),
-    #0b1716;
+  overflow: hidden;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background: #0b1716;
 }
 
-.portfolio-image::after {
-  content: "";
+.portfolio-img-cover {
   position: absolute;
-  right: 0.9rem;
-  bottom: 0.8rem;
-  width: 4.5rem;
-  height: 4.5rem;
-  border: 1px solid rgba(238, 247, 244, 0.18);
-  border-radius: 0.9rem;
-  transform: rotate(14deg);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  filter: brightness(0.85) contrast(1.1);
+}
+
+.portfolio-card:hover .portfolio-img-cover {
+  transform: scale(1.08);
+  filter: brightness(0.98) contrast(1.12);
+}
+
+.portfolio-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 16, 15, 0.4) 0%, rgba(7, 16, 15, 0.15) 45%, rgba(7, 16, 15, 0.75) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme='light'] .portfolio-image-overlay {
+  background: linear-gradient(180deg, rgba(19, 32, 29, 0.35) 0%, rgba(19, 32, 29, 0.1) 45%, rgba(19, 32, 29, 0.6) 100%);
 }
 
 .portfolio-image span {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: inline-flex;
-  padding: 0.4rem 0.6rem;
-  border: 1px solid rgba(238, 247, 244, 0.15);
+  padding: 0.38rem 0.62rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 0.55rem;
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(7, 16, 15, 0.76);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #eef7f4;
   font-size: 0.74rem;
   font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .portfolio-copy {

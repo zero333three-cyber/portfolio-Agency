@@ -218,6 +218,7 @@ const portfolio = [
   {
     title: 'Autonomous Multi-Agent SRE Swarm',
     tech: 'LangGraph / Kubernetes / Prometheus / Python',
+    image: '/projects/sre-swarm.jpg',
     problem: 'Distributed microservice outages cause severe alert fatigue and take hours of manual triage.',
     result: 'Autonomous incident telemetry analysis and self-healing rollbacks, cutting MTTR by 84%.',
     link: 'https://github.com/saranasai-21/AI-Data-Analyst-Agent-platform',
@@ -225,6 +226,7 @@ const portfolio = [
   {
     title: 'Real-time Conversational Voice AI',
     tech: 'LiveKit / WebRTC / Deepgram / Claude 3.5',
+    image: '/projects/voice-ai.jpg',
     problem: 'Customer call queues suffer 40%+ drop-off rates and high human agent operational costs.',
     result: 'Ultra-low latency (<280ms) bidirectional voice agents handling 10k+ concurrent calls with 91% resolution.',
     link: 'https://github.com/saranasai-21/RAG-Based-Smart-Assistant',
@@ -232,6 +234,7 @@ const portfolio = [
   {
     title: 'Enterprise Multimodal Vision & QA Engine',
     tech: 'YOLOv11 / Vision LLMs / TensorRT / FastAPI',
+    image: '/projects/vision-qa.jpg',
     problem: 'Manual visual defect inspection and document parsing creates severe throughput bottlenecks and errors.',
     result: '99.4% automated visual defect accuracy at 60 FPS on edge hardware with instant audit trails.',
     link: 'https://github.com/saranasai-21/Fluid-AI-Research-plan-Proposal-generator',
@@ -239,6 +242,7 @@ const portfolio = [
   {
     title: 'Agentic Revenue Operations & Discovery',
     tech: 'CrewAI / n8n / Firecrawl / PostgreSQL',
+    image: '/projects/revenue-ops.jpg',
     problem: 'B2B sales teams spend 60%+ of bandwidth manually prospecting, researching, and logging CRM updates.',
     result: 'Autonomous market signal tracking, real-time qualification, and enriched CRM sync generating 3.8x pipeline.',
     link: 'https://github.com/zero333three-cyber/Lead-Search',
@@ -246,6 +250,7 @@ const portfolio = [
   {
     title: 'Enterprise GraphRAG Knowledge Platform',
     tech: 'Neo4j / LangChain / Qdrant / Hybrid Search',
+    image: '/projects/graph-rag.jpg',
     problem: 'Cross-departmental enterprise knowledge is fragmented across silos, leading to hallucinations and compliance risk.',
     result: 'Grounded citation verification and knowledge graph traversal with sub-second retrieval across 500k+ docs.',
     link: 'https://github.com/saranasai-21/Prompt_IDE',
@@ -717,6 +722,8 @@ function App() {
             {portfolio.map(item => (
               <motion.article key={item.title} className="portfolio-card" whileHover={{ y: -6 }} transition={{ type: 'spring', stiffness: 260 }}>
                 <div className="portfolio-image">
+                  <img src={item.image} alt={item.title} className="portfolio-img-cover" loading="lazy" />
+                  <div className="portfolio-image-overlay" />
                   <span>{item.tech}</span>
                 </div>
                 <div className="portfolio-copy">
