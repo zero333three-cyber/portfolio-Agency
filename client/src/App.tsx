@@ -51,6 +51,13 @@ import {
   SiChainlink,
 } from 'react-icons/si';
 
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_gvdjnwh';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_7s5tgup';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'cx2UTKoC3FzQ3CPL-';
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '919703320989';
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'zero333three@gmail.com';
+const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE || '+91 9703320989';
+
 const stats = [
   { label: 'AI solutions shipped', value: '60+' },
   { label: 'Automation systems', value: '48+' },
@@ -434,14 +441,14 @@ function App() {
 
     try {
       await emailjs.send(
-        'service_gvdjnwh',
-        'template_7s5tgup',
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           name: form.name,
           time: timeStr,
           message: messageBody,
         },
-        'cx2UTKoC3FzQ3CPL-',
+        EMAILJS_PUBLIC_KEY,
       );
 
       setStatus({
@@ -504,7 +511,7 @@ function App() {
         <div className="floating-cube cube-six" />
       </div>
 
-      <a className="whatsapp-float" href="https://wa.me/919703320989" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+      <a className="whatsapp-float" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
         <span className="whatsapp-pulse-ring" aria-hidden="true" />
         <span className="whatsapp-pulse-ring-2" aria-hidden="true" />
         <FaWhatsapp aria-hidden="true" />
@@ -782,8 +789,8 @@ function App() {
               <h2>Ready to build, analyze, and scale?</h2>
               <p>Tell us what you are building. We will help map the quickest path from idea to useful, production-ready system.</p>
               <div className="contact-details">
-                <a href="mailto:zero333three@gmail.com"><FiMail /> zero333three@gmail.com</a>
-                <a href="tel:+919703320989"><FiPhone /> +91 9703320989</a>
+                <a href={`mailto:${CONTACT_EMAIL}`}><FiMail /> {CONTACT_EMAIL}</a>
+                <a href={`tel:${CONTACT_PHONE.replace(/\s+/g, '')}`}><FiPhone /> {CONTACT_PHONE}</a>
               </div>
             </div>
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -923,7 +930,7 @@ function App() {
               <div className="popup-actions">
                 {popup.type === 'error' && (
                   <a
-                    href="https://wa.me/919703320989"
+                    href={`https://wa.me/${WHATSAPP_NUMBER}`}
                     target="_blank"
                     rel="noreferrer"
                     className="popup-btn popup-btn-secondary"
