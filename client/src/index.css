@@ -1170,56 +1170,12 @@ main {
   border-radius: 0.85rem;
 }
 
-.portfolio-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.45rem;
-}
-
-.portfolio-card-header h3 {
-  margin: 0;
-  font-size: 1.02rem;
+.portfolio-copy h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
   line-height: 1.35;
   color: var(--text);
-}
-
-.portfolio-github-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.25rem 0.55rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.7rem;
   font-weight: 750;
-  white-space: nowrap;
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  flex-shrink: 0;
-}
-
-.portfolio-github-link:hover {
-  background: var(--surface-strong);
-  color: var(--primary);
-  border-color: rgba(50, 211, 153, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(50, 211, 153, 0.2);
-}
-
-[data-theme='light'] .portfolio-github-link {
-  background: rgba(20, 34, 30, 0.05);
-  border-color: rgba(28, 74, 64, 0.14);
-  color: #526760;
-}
-
-[data-theme='light'] .portfolio-github-link:hover {
-  background: rgba(15, 159, 114, 0.1);
-  color: #065f46;
-  border-color: rgba(15, 159, 114, 0.35);
-  box-shadow: 0 4px 12px rgba(15, 159, 114, 0.15);
 }
 
 .portfolio-image {

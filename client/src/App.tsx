@@ -12,8 +12,6 @@ import {
   FiCode,
   FiCpu,
   FiDatabase,
-  FiExternalLink,
-  FiGithub,
   FiGlobe,
   FiLayers,
   FiMail,
@@ -221,7 +219,6 @@ const portfolio = [
     image: '/projects/sre-swarm.jpg',
     problem: 'Distributed microservice outages cause severe alert fatigue and take hours of manual triage.',
     result: 'Autonomous incident telemetry analysis and self-healing rollbacks, cutting MTTR by 84%.',
-    link: 'https://github.com/saranasai-21/AI-Data-Analyst-Agent-platform',
   },
   {
     title: 'Real-time Conversational Voice AI',
@@ -229,7 +226,6 @@ const portfolio = [
     image: '/projects/voice-ai.jpg',
     problem: 'Customer call queues suffer 40%+ drop-off rates and high human agent operational costs.',
     result: 'Ultra-low latency (<280ms) bidirectional voice agents handling 10k+ concurrent calls with 91% resolution.',
-    link: 'https://github.com/saranasai-21/RAG-Based-Smart-Assistant',
   },
   {
     title: 'Enterprise Multimodal Vision & QA Engine',
@@ -237,7 +233,6 @@ const portfolio = [
     image: '/projects/vision-qa.jpg',
     problem: 'Manual visual defect inspection and document parsing creates severe throughput bottlenecks and errors.',
     result: '99.4% automated visual defect accuracy at 60 FPS on edge hardware with instant audit trails.',
-    link: 'https://github.com/saranasai-21/Fluid-AI-Research-plan-Proposal-generator',
   },
   {
     title: 'Agentic Revenue Operations & Discovery',
@@ -245,7 +240,6 @@ const portfolio = [
     image: '/projects/revenue-ops.jpg',
     problem: 'B2B sales teams spend 60%+ of bandwidth manually prospecting, researching, and logging CRM updates.',
     result: 'Autonomous market signal tracking, real-time qualification, and enriched CRM sync generating 3.8x pipeline.',
-    link: 'https://github.com/zero333three-cyber/Lead-Search',
   },
   {
     title: 'Enterprise GraphRAG Knowledge Platform',
@@ -253,7 +247,6 @@ const portfolio = [
     image: '/projects/graph-rag.jpg',
     problem: 'Cross-departmental enterprise knowledge is fragmented across silos, leading to hallucinations and compliance risk.',
     result: 'Grounded citation verification and knowledge graph traversal with sub-second retrieval across 500k+ docs.',
-    link: 'https://github.com/saranasai-21/Prompt_IDE',
   },
 ];
 const testimonials = [
@@ -727,23 +720,7 @@ function App() {
                   <span>{item.tech}</span>
                 </div>
                 <div className="portfolio-copy">
-                  <div className="portfolio-card-header">
-                    <h3>{item.title}</h3>
-                    {item.link && (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="portfolio-github-link"
-                        title="View on GitHub"
-                        aria-label={`View ${item.title} on GitHub`}
-                      >
-                        <FiGithub />
-                        <span>Code</span>
-                        <FiExternalLink />
-                      </a>
-                    )}
-                  </div>
+                  <h3>{item.title}</h3>
                   <p><strong>Problem:</strong> {item.problem}</p>
                   <p><strong>Result:</strong> {item.result}</p>
                 </div>
