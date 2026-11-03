@@ -1161,11 +1161,22 @@ main {
 }
 
 .portfolio-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(20, 1fr);
   gap: 0.75rem;
 }
 
+.portfolio-grid .portfolio-card:nth-child(-n+5) {
+  grid-column: span 4;
+}
+
+.portfolio-grid .portfolio-card:nth-child(n+6) {
+  grid-column: span 5;
+}
+
 .portfolio-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
   border-radius: 0.75rem;
   border: 1px solid var(--border);
@@ -1194,9 +1205,6 @@ main {
 .portfolio-image {
   height: 6.8rem;
   position: relative;
-  display: flex;
-  align-items: flex-start;
-  padding: 0.55rem;
   overflow: hidden;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
@@ -1247,6 +1255,9 @@ main {
 }
 
 .portfolio-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 0.65rem 0.8rem;
 }
 
@@ -1677,13 +1688,23 @@ main {
   }
 
   .service-grid,
-  .stack-grid,
-  .portfolio-grid {
+  .stack-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .solution-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-grid .portfolio-card:nth-child(-n+5),
+  .portfolio-grid .portfolio-card:nth-child(n+6) {
+    grid-column: auto;
   }
 }
 

@@ -262,6 +262,20 @@ const portfolio = [
     problem: 'Cloud API costs and data privacy prevent using public cloud models.',
     result: 'On-prem distributed inference cluster reaching 180 tok/s with 62% cost savings.',
   },
+  {
+    title: 'Autonomous 3D BIM & Jobsite Intelligence',
+    tech: 'OpenBIM / IFC / Reality Capture',
+    image: '/projects/construction-bim.jpg',
+    problem: 'Jobsite progress clashes and manual schedule audits cause costly rework delays.',
+    result: 'Drone reality capture aligned with 3D BIM models catching schedule clashes 3 weeks earlier.',
+  },
+  {
+    title: 'Automated Construction Takeoff & Estimating',
+    tech: 'Vision AI / Vector Blueprint Parsing',
+    image: '/projects/construction-takeoff.jpg',
+    problem: 'Manual plan takeoffs and contractor bid packages take 40+ hours per RFP.',
+    result: 'Vector blueprint parsing extracting material takeoffs and labor bids with 98.7% precision.',
+  },
 ];
 const testimonials = [
   {
@@ -731,7 +745,6 @@ function App() {
                 <div className="portfolio-image">
                   <img src={item.image} alt={item.title} className="portfolio-img-cover" loading="lazy" />
                   <div className="portfolio-image-overlay" />
-                  <span>{item.tech}</span>
                 </div>
                 <div className="portfolio-copy">
                   <h3>{item.title}</h3>
