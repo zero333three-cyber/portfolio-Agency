@@ -52,10 +52,10 @@ import {
 } from 'react-icons/si';
 
 const stats = [
-  { label: 'AI solutions shipped', value: '120+' },
-  { label: 'Automation systems', value: '95+' },
-  { label: 'Web applications', value: '85+' },
-  { label: 'Analytics dashboards', value: '65+' },
+  { label: 'AI solutions shipped', value: '60+' },
+  { label: 'Automation systems', value: '48+' },
+  { label: 'Web applications', value: '42+' },
+  { label: 'Analytics dashboards', value: '32+' },
 ];
 
 const services = [
