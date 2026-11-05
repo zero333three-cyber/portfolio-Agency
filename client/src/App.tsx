@@ -56,6 +56,7 @@ const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'templat
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'cx2UTKoC3FzQ3CPL-';
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '919703320989';
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'zero333three@gmail.com';
+const SECONDARY_EMAIL = import.meta.env.VITE_CONTACT_EMAIL_SECONDARY || 'zerothreesolutions@gmail.com';
 const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE || '+91 9703320989';
 
 const stats = [
@@ -379,35 +380,42 @@ function App() {
 
   useEffect(() => {
     const sectionIds = ['home', 'services', 'stack', 'portfolio', 'contact'];
+    let ticking = false;
 
-    const handleScroll = () => {
+    const updateActiveSection = () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
 
+      let nextSection = 'home';
       // Bottom reached -> activate contact
       if (scrollY + viewportHeight >= docHeight - 70) {
-        setActiveSection('contact');
-        return;
-      }
-
-      // Check sections from bottom to top
-      const targetPoint = scrollY + viewportHeight * 0.38;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el) {
-          const top = el.offsetTop;
-          if (targetPoint >= top) {
-            setActiveSection(sectionIds[i]);
-            return;
+        nextSection = 'contact';
+      } else {
+        // Check sections from bottom to top
+        const targetPoint = scrollY + viewportHeight * 0.38;
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sectionIds[i]);
+          if (el && targetPoint >= el.offsetTop) {
+            nextSection = sectionIds[i];
+            break;
           }
         }
       }
-      setActiveSection('home');
+
+      setActiveSection(prev => (prev !== nextSection ? nextSection : prev));
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveSection);
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    updateActiveSection();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -790,6 +798,7 @@ function App() {
               <p>Tell us what you are building. We will help map the quickest path from idea to useful, production-ready system.</p>
               <div className="contact-details">
                 <a href={`mailto:${CONTACT_EMAIL}`}><FiMail /> {CONTACT_EMAIL}</a>
+                <a href={`mailto:${SECONDARY_EMAIL}`}><FiMail /> {SECONDARY_EMAIL}</a>
                 <a href={`tel:${CONTACT_PHONE.replace(/\s+/g, '')}`}><FiPhone /> {CONTACT_PHONE}</a>
               </div>
             </div>

@@ -163,6 +163,7 @@ The application uses environment variables to configure client-side third-party 
 | `VITE_EMAILJS_PUBLIC_KEY` | **Yes** | `cx2UTKoC3FzQ3CPL-` | EmailJS Public API Key (Account Public Key). |
 | `VITE_WHATSAPP_NUMBER` | **Yes** | `919703320989` | WhatsApp number in international format (digits only). |
 | `VITE_CONTACT_EMAIL` | **Yes** | `zero333three@gmail.com` | Primary agency contact email displayed on the UI. |
+| `VITE_CONTACT_EMAIL_SECONDARY` | **Yes** | `zerothreesolutions@gmail.com` | Secondary agency contact email displayed on the UI. |
 | `VITE_CONTACT_PHONE` | **Yes** | `+91 9703320989` | Primary telephone number formatted with country code. |
 | `VITE_API_URL` | No | _Empty (relative proxy)_ | Base URL if directing API requests to a separate remote server. |
 
@@ -325,6 +326,7 @@ VITE_EMAILJS_TEMPLATE_ID=template_7s5tgup
 VITE_EMAILJS_PUBLIC_KEY=cx2UTKoC3FzQ3CPL-
 VITE_WHATSAPP_NUMBER=919703320989
 VITE_CONTACT_EMAIL=zero333three@gmail.com
+VITE_CONTACT_EMAIL_SECONDARY=zerothreesolutions@gmail.com
 VITE_CONTACT_PHONE=+91 9703320989
 ```
 
@@ -340,7 +342,8 @@ VITE_CONTACT_PHONE=+91 9703320989
 
 - **Agency:** ZeroThree Solutions
 - **Website:** [https://zero-threesolutions.vercel.app](https://zero-threesolutions.vercel.app)
-- **Email:** [zero333three@gmail.com](mailto:zero333three@gmail.com)
+- **Primary Email:** [zero333three@gmail.com](mailto:zero333three@gmail.com)
+- **Secondary Email:** [zerothreesolutions@gmail.com](mailto:zerothreesolutions@gmail.com)
 - **WhatsApp:** [+91 9703320989](https://wa.me/919703320989)
 - **GitHub:** [@zero333three-cyber](https://github.com/zero333three-cyber)
 

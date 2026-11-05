@@ -88,6 +88,9 @@ button {
   overflow: hidden;
   pointer-events: none;
   perspective: 900px;
+  transform: translateZ(0);
+  will-change: transform;
+  contain: strict;
 }
 
 .backdrop-grid {
@@ -110,7 +113,9 @@ button {
     radial-gradient(circle at 78% 18%, rgba(79, 157, 255, 0.14), transparent 26%),
     radial-gradient(circle at 62% 76%, rgba(245, 184, 75, 0.1), transparent 22%),
     conic-gradient(from 180deg at 50% 50%, transparent, rgba(50, 211, 153, 0.08), transparent, rgba(79, 157, 255, 0.08), transparent);
-  filter: blur(18px);
+  filter: blur(14px);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
   animation: auroraDrift 18s ease-in-out infinite alternate;
 }
 
@@ -178,8 +183,10 @@ button {
   background:
     linear-gradient(135deg, rgba(50, 211, 153, 0.26), rgba(79, 157, 255, 0.14)),
     rgba(255, 255, 255, 0.035);
-  box-shadow: 0 0 80px rgba(50, 211, 153, 0.24);
+  box-shadow: 0 0 32px rgba(50, 211, 153, 0.2);
   transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
   animation: cubeFloat 14s ease-in-out infinite;
 }
 
@@ -188,7 +195,7 @@ button {
   background:
     linear-gradient(135deg, rgba(15, 159, 114, 0.14), rgba(37, 99, 235, 0.08)),
     rgba(0, 0, 0, 0.01);
-  box-shadow: 0 0 60px rgba(15, 159, 114, 0.15);
+  box-shadow: 0 0 24px rgba(15, 159, 114, 0.12);
 }
 
 .floating-cube::before,
@@ -723,7 +730,7 @@ main {
   border: 1px solid var(--border);
   border-radius: 0.95rem;
   background: var(--surface);
-  backdrop-filter: blur(18px);
+  transform: translateZ(0);
 }
 
 .stat-card strong {
@@ -942,7 +949,7 @@ main {
   border: 1px solid var(--border);
   background: var(--bg-elevated);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
-  backdrop-filter: blur(18px);
+  transform: translateZ(0);
 }
 
 .service-card {
@@ -1318,7 +1325,7 @@ main {
   border-radius: 1rem;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  backdrop-filter: blur(18px);
+  transform: translateZ(0);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
