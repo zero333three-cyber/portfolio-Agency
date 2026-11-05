@@ -591,7 +591,7 @@ function App() {
           >
             <span className="eyebrow">Enterprise AI & Automation Agency</span>
             <h1>
-              Build smarter systems for{' '}
+              Elite AI Agency & Automation Solutions for{' '}
               <span className="animated-word-wrap">
                 {textLoop.map(word => (
                   <span key={word}>{word}</span>
@@ -599,7 +599,7 @@ function App() {
               </span>
             </h1>
             <p>
-              We design AI-powered workflows, analytics products, cloud systems, and polished web experiences that help growing businesses move faster.
+              ZeroThree Solutions is an elite digital engineering agency. We architect custom AI agents, business workflow automations, modern SaaS platforms, and enterprise cloud solutions that scale revenue and eliminate operational drag.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">
@@ -650,8 +650,8 @@ function App() {
 
         <section className={`section ${activeSection === 'services' ? 'section-active' : ''}`} id="services">
           <div className="section-heading">
-            <span>Our services</span>
-            <h2>Senior capability across AI, product, data, and cloud.</h2>
+            <span>Our Services</span>
+            <h2>Full-Stack AI Agency & Engineering Capabilities</h2>
           </div>
 
           <div className="service-grid">
@@ -751,8 +751,8 @@ function App() {
 
         <section className={`section ${activeSection === 'portfolio' ? 'section-active' : ''}`} id="portfolio">
           <div className="section-heading">
-            <span>Selected work</span>
-            <h2>High-impact projects designed for scale.</h2>
+            <span>Portfolio & Case Studies</span>
+            <h2>Proven AI Solutions Shipped for High-Growth Companies</h2>
           </div>
           <div className="portfolio-grid">
             {portfolio.map(item => (
@@ -793,9 +793,9 @@ function App() {
         <section className={`section section-contact ${activeSection === 'contact' ? 'section-active' : ''}`} id="contact">
           <div className="contact-panel">
             <div className="contact-copy">
-              <span>Contact the team</span>
-              <h2>Ready to build, analyze, and scale?</h2>
-              <p>Tell us what you are building. We will help map the quickest path from idea to useful, production-ready system.</p>
+              <span>Hire Our Agency</span>
+              <h2>Ready to build, automate, and scale with ZeroThree Solutions?</h2>
+              <p>Schedule a technical discovery session. We will evaluate your requirements and architect a production-ready roadmap from concept to deployment.</p>
               <div className="contact-details">
                 <a href={`mailto:${CONTACT_EMAIL}`}><FiMail /> {CONTACT_EMAIL}</a>
                 <a href={`mailto:${SECONDARY_EMAIL}`}><FiMail /> {SECONDARY_EMAIL}</a>
@@ -886,13 +886,13 @@ function App() {
           <div className="footer-logo-badge">
             <img
               src="/logo.png"
-              alt="ZeroThree Solutions"
+              alt="ZeroThree Solutions - Enterprise AI & Automation Agency"
               className="footer-logo-img"
             />
           </div>
           <div>
             <p className="footer-brand">ZeroThree Solutions</p>
-            <p>Build. Analyze. Scale.</p>
+            <p>Build. Analyze. Scale. | Premier AI & Software Agency</p>
           </div>
         </div>
         <p>© 2026 ZeroThree Solutions. All Rights Reserved.</p>
