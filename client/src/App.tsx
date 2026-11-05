@@ -536,7 +536,7 @@ function App() {
             />
           </div>
           <div>
-            <p>ZeroThree Solutions</p>
+            <p>ZeroThree Solutions <span style={{ opacity: 0.65, fontSize: '0.75em' }}>/ 0303</span></p>
             <span>Build. Analyze. Scale.</span>
           </div>
         </a>
@@ -589,7 +589,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: 'easeOut' }}
           >
-            <span className="eyebrow">Enterprise AI & Automation Agency</span>
+            <span className="eyebrow">Enterprise AI & Automation Agency · 0303 Solutions</span>
             <h1>
               Build smarter systems for{' '}
               <span className="animated-word-wrap">
@@ -886,16 +886,16 @@ function App() {
           <div className="footer-logo-badge">
             <img
               src="/logo.png"
-              alt="ZeroThree Solutions"
+              alt="ZeroThree Solutions (0303 Solutions)"
               className="footer-logo-img"
             />
           </div>
           <div>
-            <p className="footer-brand">ZeroThree Solutions</p>
+            <p className="footer-brand">ZeroThree Solutions (0303 Solutions)</p>
             <p>Build. Analyze. Scale.</p>
           </div>
         </div>
-        <p>© 2026 ZeroThree Solutions. All Rights Reserved.</p>
+        <p>© 2026 ZeroThree Solutions (0303 Solutions). All Rights Reserved.</p>
       </footer>
 
       {/* Pop-up Notification Modal */}
