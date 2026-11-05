@@ -350,7 +350,13 @@ const budgetOptionsINR: Option[] = [
 ];
 
 function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('zerothree-theme') as 'dark' | 'light' | null;
+      if (stored === 'dark' || stored === 'light') return stored;
+    }
+    return 'light';
+  });
   const [currency, setCurrency] = useState<'USD' | 'INR'>('USD');
   const [activeSection, setActiveSection] = useState<string>('home');
   const [form, setForm] = useState({
@@ -369,14 +375,17 @@ function App() {
     message: '',
   });
 
-  useEffect(() => {
-    const stored = localStorage.getItem('zerothree-theme') as 'dark' | 'light' | null;
-    if (stored) {
-      setTheme(stored);
-    } else {
-      setTheme('light');
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveSection(targetId);
+      if (window.history.pushState) {
+        window.history.pushState(null, '', `#${targetId}`);
+      }
     }
-  }, []);
+  };
 
   useEffect(() => {
     const sectionIds = ['home', 'services', 'stack', 'portfolio', 'contact'];
@@ -527,7 +536,7 @@ function App() {
       </a>
 
       <header className="topbar">
-        <a className="brand" href="#home" aria-label="ZeroThree Solutions home">
+        <a className="brand" href="#home" onClick={(e) => handleNavClick(e, 'home')} aria-label="ZeroThree Solutions home">
           <div className="brand-logo-badge">
             <img
               src="/logo.png"
@@ -544,6 +553,7 @@ function App() {
         <nav className="nav-links" aria-label="Primary navigation">
           <a
             href="#services"
+            onClick={(e) => handleNavClick(e, 'services')}
             aria-label="Services"
             className={`nav-link-item ${activeSection === 'services' ? 'active' : ''}`}
           >
@@ -552,6 +562,7 @@ function App() {
           </a>
           <a
             href="#stack"
+            onClick={(e) => handleNavClick(e, 'stack')}
             aria-label="Stack"
             className={`nav-link-item ${activeSection === 'stack' ? 'active' : ''}`}
           >
@@ -560,6 +571,7 @@ function App() {
           </a>
           <a
             href="#portfolio"
+            onClick={(e) => handleNavClick(e, 'portfolio')}
             aria-label="Work"
             className={`nav-link-item ${activeSection === 'portfolio' ? 'active' : ''}`}
           >
@@ -568,6 +580,7 @@ function App() {
           </a>
           <a
             href="#contact"
+            onClick={(e) => handleNavClick(e, 'contact')}
             aria-label="Contact"
             className={`nav-link-item ${activeSection === 'contact' ? 'active' : ''}`}
           >
@@ -591,7 +604,7 @@ function App() {
           >
             <span className="eyebrow">Enterprise AI & Automation Agency</span>
             <h1>
-              Elite AI Agency & Automation Solutions for{' '}
+              AI & Automation Solutions for{' '}
               <span className="animated-word-wrap">
                 {textLoop.map(word => (
                   <span key={word}>{word}</span>
@@ -602,10 +615,10 @@ function App() {
               ZeroThree Solutions is an elite digital engineering agency. We architect custom AI agents, business workflow automations, modern SaaS platforms, and enterprise cloud solutions that scale revenue and eliminate operational drag.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#contact">
+              <a className="button button-primary" href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>
                 Book Free Consultation <FiArrowRight />
               </a>
-              <a className="button button-secondary" href="#portfolio">
+              <a className="button button-secondary" href="#portfolio" onClick={(e) => handleNavClick(e, 'portfolio')}>
                 View Work
               </a>
             </div>

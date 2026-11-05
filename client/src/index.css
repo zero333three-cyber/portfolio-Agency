@@ -532,17 +532,18 @@ main {
 }
 
 .hero h1 {
-  margin: 1.05rem 0 1.2rem;
+  margin: 0.85rem 0 1.15rem;
   color: var(--text);
-  font-size: clamp(3.2rem, 7vw, 6.6rem);
-  line-height: 0.92;
-  letter-spacing: 0;
+  font-size: clamp(2rem, 3.8vw, 3.35rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 800;
 }
 
 .animated-word-wrap {
   position: relative;
   display: inline-grid;
-  min-width: min(100%, 9.8ch);
+  min-width: min(100%, 14ch);
   color: var(--primary);
   vertical-align: bottom;
   overflow: hidden;
@@ -767,6 +768,8 @@ main {
   box-shadow: var(--shadow);
   transform: rotateX(56deg) rotateZ(-18deg);
   transform-style: preserve-3d;
+  will-change: transform;
+  contain: layout style;
   animation: stageFloat 8s ease-in-out infinite;
 }
 
@@ -919,12 +922,12 @@ main {
 }
 
 .section-heading h2 {
-  margin: 0.6rem 0 0;
-  max-width: 52rem;
+  margin: 0.5rem 0 0;
+  max-width: 48rem;
   color: var(--text);
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
   text-align: center;
 }
 
@@ -1360,10 +1363,10 @@ main {
 }
 
 .contact-copy h2 {
-  margin: 0.9rem 0 1rem;
+  margin: 0.75rem 0 0.95rem;
   color: var(--text);
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  line-height: 1.2;
 }
 
 .contact-details {
@@ -1736,8 +1739,8 @@ main {
   }
 
   .hero h1 {
-    font-size: clamp(2.3rem, 9vw, 4.2rem);
-    line-height: 1.15;
+    font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+    line-height: 1.18;
   }
 
   .hero-stats,
@@ -1799,8 +1802,8 @@ main {
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 8.5vw, 3.2rem);
-    line-height: 1.18;
+    font-size: clamp(1.45rem, 5vw, 2rem);
+    line-height: 1.2;
   }
 
   .footer {

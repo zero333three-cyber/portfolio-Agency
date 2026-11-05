@@ -422,6 +422,15 @@
       ]
     }
     </script>
+    <!-- Prevent flash of unstyled theme / layout shift -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('zerothree-theme') || 'light';
+          document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
