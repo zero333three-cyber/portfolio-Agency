@@ -1,17 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050814" />
-    <meta name="description" content="ZeroThree Solutions is a premium AI agency building automation systems, analytics platforms, web applications, and cloud solutions for growth-driven companies." />
-    <title>ZeroThree Solutions | AI Automation & Technology Agency</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- ===== PRIMARY SEO META ===== -->
+    <title>ZeroThree Solutions | AI Automation, AI Agents & Web Development Agency</title>
+    <meta name="title" content="ZeroThree Solutions | AI Automation, AI Agents & Web Development Agency" />
+    <meta name="description" content="ZeroThree Solutions is a premium AI agency specializing in AI automation, AI agents, data analytics, web development, cloud solutions, and no-code development. 60+ AI solutions shipped for growth-driven companies worldwide." />
+    <meta name="keywords" content="AI automation agency, AI agents, custom AI solutions, data analytics, web development, SaaS development, cloud DevOps, no-code development, LangChain, OpenAI, machine learning, business intelligence, workflow automation, React development, Next.js, Python automation, AI consulting, India, ZeroThree Solutions" />
+    <meta name="author" content="ZeroThree Solutions" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <link rel="canonical" href="https://zero-threesolutions.vercel.app/" />
+
+    <!-- ===== THEME & APPEARANCE ===== -->
+    <meta name="theme-color" content="#07100f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="msapplication-TileColor" content="#07100f" />
+    <meta name="msapplication-TileImage" content="/favicon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ZeroThree" />
+    <meta name="application-name" content="ZeroThree Solutions" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <!-- ===== OPEN GRAPH (Facebook / LinkedIn / WhatsApp) ===== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zero-threesolutions.vercel.app/" />
+    <meta property="og:title" content="ZeroThree Solutions | AI Automation, AI Agents & Web Development Agency" />
+    <meta property="og:description" content="Premium AI agency building automation systems, AI agents, analytics platforms, web applications, and cloud solutions. 60+ AI solutions shipped. Get a free consultation." />
+    <meta property="og:image" content="https://zero-threesolutions.vercel.app/og-image.png" />
+    <meta property="og:image:alt" content="ZeroThree Solutions — Build. Analyze. Scale." />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="ZeroThree Solutions" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://zero-threesolutions.vercel.app/" />
+    <meta name="twitter:title" content="ZeroThree Solutions | AI Automation & Technology Agency" />
+    <meta name="twitter:description" content="Premium AI agency — AI automation, agents, data analytics, web development & cloud solutions. 60+ AI solutions shipped. Free consultation available." />
+    <meta name="twitter:image" content="https://zero-threesolutions.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="ZeroThree Solutions — Build. Analyze. Scale." />
+
+    <!-- ===== FAVICONS & ICONS ===== -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- ===== FONTS (Performance-optimized) ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- ===== DNS PREFETCH (third-party services) ===== -->
+    <link rel="dns-prefetch" href="https://api.emailjs.com" />
+    <link rel="dns-prefetch" href="https://wa.me" />
+
+    <!-- ===== JSON-LD STRUCTURED DATA ===== -->
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://zero-threesolutions.vercel.app/#organization",
+      "name": "ZeroThree Solutions",
+      "alternateName": "Zero Three Solutions",
+      "url": "https://zero-threesolutions.vercel.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://zero-threesolutions.vercel.app/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://zero-threesolutions.vercel.app/og-image.png",
+      "description": "Premium AI agency building automation systems, AI agents, analytics platforms, web applications, and cloud solutions for growth-driven companies.",
+      "email": "zero333three@gmail.com",
+      "telephone": "+919703320989",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+919703320989",
+          "contactType": "sales",
+          "email": "zero333three@gmail.com",
+          "availableLanguage": ["English", "Hindi", "Telugu"]
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "zerothreesolutions@gmail.com",
+          "contactType": "customer support",
+          "availableLanguage": ["English", "Hindi", "Telugu"]
+        }
+      ],
+      "sameAs": [
+        "https://github.com/zero333three-cyber",
+        "https://wa.me/919703320989"
+      ],
+      "foundingDate": "2024",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 2,
+        "maxValue": 10
+      },
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "AI Automation",
+        "AI Agents",
+        "Machine Learning",
+        "Data Analytics",
+        "Web Development",
+        "Cloud Computing",
+        "DevOps",
+        "LangChain",
+        "OpenAI",
+        "Python",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js"
+      ]
+    }
+    </script>
+
+    <!-- WebSite Schema (enables sitelinks search box) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://zero-threesolutions.vercel.app/#website",
+      "url": "https://zero-threesolutions.vercel.app",
+      "name": "ZeroThree Solutions",
+      "description": "Premium AI Automation & Technology Agency",
+      "publisher": {
+        "@id": "https://zero-threesolutions.vercel.app/#organization"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
+
+    <!-- WebPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://zero-threesolutions.vercel.app/#webpage",
+      "url": "https://zero-threesolutions.vercel.app",
+      "name": "ZeroThree Solutions | AI Automation, AI Agents & Web Development Agency",
+      "description": "Premium AI agency building automation systems, AI agents, analytics platforms, web applications, and cloud solutions. 60+ AI solutions shipped.",
+      "isPartOf": {
+        "@id": "https://zero-threesolutions.vercel.app/#website"
+      },
+      "about": {
+        "@id": "https://zero-threesolutions.vercel.app/#organization"
+      },
+      "inLanguage": "en-US",
+      "datePublished": "2024-01-01",
+      "dateModified": "2026-11-05"
+    }
+    </script>
+
+    <!-- ProfessionalService Schema (helps with local/service SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://zero-threesolutions.vercel.app/#service",
+      "name": "ZeroThree Solutions",
+      "url": "https://zero-threesolutions.vercel.app",
+      "logo": "https://zero-threesolutions.vercel.app/logo.png",
+      "image": "https://zero-threesolutions.vercel.app/og-image.png",
+      "description": "Premium AI agency specializing in AI automation, AI agents, data analytics, full-stack web development, cloud DevOps, and no-code solutions.",
+      "telephone": "+919703320989",
+      "email": "zero333three@gmail.com",
+      "priceRange": "$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "17.385",
+        "longitude": "78.4867"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "India"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "United Kingdom"
+        },
+        {
+          "@type": "Country",
+          "name": "United Arab Emirates"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI & Technology Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Automation",
+              "description": "Workflow automation, AI-powered operations, and internal tools that remove manual work using OpenAI, LangChain, Zapier, n8n, and Python."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Agents & Assistants",
+              "description": "Custom AI assistants for support, sales, research, reporting, and business operations using OpenAI, FastAPI, and LangChain."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Data Analytics & Business Intelligence",
+              "description": "Decision dashboards, reporting systems, and insight engines built with Python, PostgreSQL, Power BI, and interactive visualizations."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Web Development & SaaS",
+              "description": "Fast, responsive websites, SaaS platforms, and custom product experiences with React, Next.js, TypeScript, and Node.js."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud & DevOps",
+              "description": "Cloud deployment, CI/CD pipelines, monitoring, containerization with AWS, Docker, Kubernetes, and GitHub Actions."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "No-Code Development",
+              "description": "Rapid MVPs and business tools using Webflow, Bubble, Airtable, Zapier, and Make."
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "48",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Amrita Shah"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "ZeroThree built our AI automation stack with the speed and precision we needed. Their insights made our launch far more efficient."
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Rahul Mehta"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "The team turned our messy internal process into a clean automation system. We saved hours every week almost immediately."
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Priya Desai"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Their AI agents transformed our customer support. Response times dropped dramatically and our team can focus on what matters."
+        }
+      ]
+    }
+    </script>
+
+    <!-- FAQPage Schema (boosts search visibility with rich results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What services does ZeroThree Solutions offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ZeroThree Solutions offers AI Automation, AI Agents & Assistants, Data Analytics & Business Intelligence, Web Development & SaaS, UI/UX Design, Cloud & DevOps, and No-Code Development services. We have shipped 60+ AI solutions, 48+ automation systems, 42+ web applications, and 32+ analytics dashboards."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies does ZeroThree Solutions use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our technology stack includes OpenAI, LangChain, Python, React, Next.js, TypeScript, Node.js, FastAPI, PostgreSQL, Power BI, AWS, Docker, Kubernetes, Figma, Zapier, n8n, Airtable, Webflow, and more. We choose the best tools for each project."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I contact ZeroThree Solutions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can reach us via email at zero333three@gmail.com or zerothreesolutions@gmail.com, call us at +91 9703320989, or chat directly on WhatsApp. You can also fill out the consultation form on our website for a free project discussion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the typical project budget range?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our projects range from under $5,000 for smaller automation tasks and MVPs to $30,000+ for enterprise-level AI systems, SaaS platforms, and full-stack solutions. We offer flexible pricing in both USD and INR."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does ZeroThree Solutions work with international clients?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, ZeroThree Solutions serves clients globally including India, United States, United Kingdom, UAE, and beyond. We work remotely with transparent communication and fast delivery cycles."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://zero-threesolutions.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://zero-threesolutions.vercel.app/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Portfolio",
+          "item": "https://zero-threesolutions.vercel.app/#portfolio"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Contact",
+          "item": "https://zero-threesolutions.vercel.app/#contact"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

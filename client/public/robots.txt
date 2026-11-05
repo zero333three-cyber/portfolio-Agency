@@ -1,0 +1,23 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://zero-threesolutions.vercel.app/sitemap.xml
+
+# Crawl-delay (advisory, respected by Bing/Yandex)
+Crawl-delay: 1
+
+# Block internal/dev assets
+Disallow: /assets/
+Disallow: /_next/
+Disallow: /api/
+
+# Block common bot traps
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
